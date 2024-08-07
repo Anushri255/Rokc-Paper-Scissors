@@ -18,14 +18,13 @@ To run this game locally, follow these steps:
    ```bash
    git clone <repository-url>
 
-```
-
+   ```
 
 2. **Navigate into the folder:**
 
-```bash
-    cd rock-paper-scissors
-```
+   ```bash
+       cd rock-paper-scissors
+   ```
 
 3. **Open game.html in Your Browser:**
 
