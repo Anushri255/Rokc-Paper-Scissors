@@ -63,7 +63,36 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const choices = ['rock', 'paper', 'scissors'];
+        document.getElementById('rock').addEventListener('click', () => playGame('rock'));
+        document.getElementById('paper').addEventListener('click', () => playGame('paper'));
+        document.getElementById('scissors').addEventListener('click', () => playGame('scissors'));
+
+        function playGame(userChoice) {
+            const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            document.getElementById('user-choice').innerText = `Your choice: ${userChoice}`;
+            document.getElementById('computer-choice').innerText = `Computer's choice: ${computerChoice}`;
+            
+            const winner = determineWinner(userChoice, computerChoice);
+            document.getElementById('winner').innerText = `Winner: ${winner}`;
+        }
+
+        function determineWinner(userChoice, computerChoice) {
+            if (userChoice === computerChoice) {
+                return 'It\'s a tie!';
+            }
+            
+            if ((userChoice === 'rock' && computerChoice === 'scissors') ||
+                (userChoice === 'paper' && computerChoice === 'rock') ||
+                (userChoice === 'scissors' && computerChoice === 'paper')) {
+                return 'You win!';
+            } else {
+                return 'Better Luck Next Time! Computer wins!';
+            }
+        }
+
+    </script>
 </body>
 
 </html>
