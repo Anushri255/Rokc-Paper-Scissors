@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Rock Paper Scissors</title>
     <style>
@@ -26,7 +25,8 @@
             margin-bottom: 20px;
         }
 
-        .choices button {
+        .choices button,
+        .control button {
             font-size: 16px;
             padding: 10px 20px;
             margin: 10px;
@@ -36,7 +36,8 @@
             transition: background-color 0.3s ease;
         }
 
-        .choices button:hover {
+        .choices button:hover,
+        .control button:hover {
             background-color: #ddd;
         }
 
@@ -46,11 +47,13 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>Rock, Paper, Scissors</h1>
-        <div class="game">
+        <div class="start-screen">
+            <button id="play">Play</button>
+        </div>
+        <div class="game" style="display: none;">
             <div class="choices">
                 <button id="rock">Rock</button>
                 <button id="paper">Paper</button>
@@ -61,13 +64,32 @@
                 <p id="computer-choice">Computer's choice: </p>
                 <p id="winner">Winner: </p>
             </div>
+            <div class="control">
+                <button id="restart">Restart</button>
+            </div>
         </div>
     </div>
     <script>
         const choices = ['rock', 'paper', 'scissors'];
+
+        document.getElementById('play').addEventListener('click', startGame);
+        document.getElementById('restart').addEventListener('click', restartGame);
         document.getElementById('rock').addEventListener('click', () => playGame('rock'));
         document.getElementById('paper').addEventListener('click', () => playGame('paper'));
         document.getElementById('scissors').addEventListener('click', () => playGame('scissors'));
+
+        function startGame() {
+            document.querySelector('.start-screen').style.display = 'none';
+            document.querySelector('.game').style.display = 'block';
+        }
+
+        function restartGame() {
+            document.querySelector('.start-screen').style.display = 'block';
+            document.querySelector('.game').style.display = 'none';
+            document.getElementById('user-choice').innerText = 'Your choice: ';
+            document.getElementById('computer-choice').innerText = 'Computer\'s choice: ';
+            document.getElementById('winner').innerText = 'Winner: ';
+        }
 
         function playGame(userChoice) {
             const computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -91,8 +113,6 @@
                 return 'Better Luck Next Time! Computer wins!';
             }
         }
-
     </script>
 </body>
-
 </html>
